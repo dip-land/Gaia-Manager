@@ -14,7 +14,6 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Build
     - run: cargo tauri build
     - uses: svenstaro/upload-release-action@v2
       with:
