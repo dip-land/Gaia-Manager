@@ -45,6 +45,9 @@ jobs:
       - name: install frontend dependencies
         run: yarn install # change this to npm, pnpm or bun depending on which one you use.
 
+      - run: cargo install cargo-binstall
+      - run: cargo binstall dioxus-cli@0.6.3 --force
+      
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
