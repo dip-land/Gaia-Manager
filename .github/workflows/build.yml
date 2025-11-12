@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
-    - run: cargo build
+    - run: cargo install tauri-cli --version "^2.0.0" --locked
     - run: cargo tauri build
     - uses: svenstaro/upload-release-action@v2
       with:
@@ -27,5 +27,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - run: cargo build
+    - run: sudo apt update
+    - run: sudo apt install libwebkit2gtk-4.1-dev \
+        build-essential \
+        curl \
+        wget \
+        file \
+        libxdo-dev \
+        libssl-dev \
+        libayatana-appindicator3-dev \
+        librsvg2-dev
+    - run: cargo install tauri-cli --version "^2.0.0" --locked
     - run: cargo tauri build
