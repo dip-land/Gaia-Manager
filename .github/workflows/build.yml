@@ -17,7 +17,7 @@ jobs:
     - run: rustup toolchain install stable
     - run: rustup target add wasm32-unknown-unknown
     - run: cargo install cargo-binstall
-    - run: cargo install tauri-cli --version "^2.0.0" --locked
+    - run: cargo binstall tauri-cli --force
     - run: cargo binstall dioxus-cli@0.6.3 --force
     - run: cargo tauri build
     - uses: svenstaro/upload-release-action@v2
@@ -31,9 +31,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - run: sudo apt update
+    - run: sudo apt install libwebkit2gtk-4.1-dev \
+        build-essential \
+        curl \
+        wget \
+        file \
+        libxdo-dev \
+        libssl-dev \
+        libayatana-appindicator3-dev \
+        librsvg2-dev
     - run: rustup toolchain install stable
     - run: rustup target add wasm32-unknown-unknown
     - run: cargo install cargo-binstall
-    - run: cargo install tauri-cli --version "^2.0.0" --locked
+    - run: cargo binstall tauri-cli --force
     - run: cargo binstall dioxus-cli@0.6.3 --force
     - run: cargo tauri build
