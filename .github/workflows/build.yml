@@ -1,0 +1,31 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build_windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+    - run: cargo tauri build
+    - uses: svenstaro/upload-release-action@v2
+      with:
+        file: target/release/bundle/nsis/*
+        asset_name: "GaiaManagerSetup.exe"
+        overwrite: true
+        file_glob: true
+      
+  build_linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+      run: cargo tauri build
