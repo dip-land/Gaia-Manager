@@ -23,6 +23,8 @@ jobs:
     - uses: svenstaro/upload-release-action@v2
       with:
         file: target/release/bundle/nsis/*
+        tag: build
+        draft: true
         asset_name: "GaiaManagerSetup.exe"
         overwrite: true
         file_glob: true
@@ -31,15 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - run: sudo apt-get update && sudo apt-get install libwebkit2gtk-4.1-dev \
-        build-essential \
-        curl \
-        wget \
-        file \
-        libxdo-dev \
-        libssl-dev \
-        libayatana-appindicator3-dev \
-        librsvg2-dev
+    - run: sudo apt-get update
+    - uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages: libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+        version: 1.0
     - run: rustup toolchain install stable
     - run: rustup target add wasm32-unknown-unknown
     - run: cargo install cargo-binstall
