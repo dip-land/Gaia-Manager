@@ -1,0 +1,237 @@
+@media (max-width: 1280px) {
+    main #server_panel #sub_panel #sub_panel_display #sub_panel_dashboard {
+        grid-template-columns: auto 200px;
+    }
+}
+
+@media (max-width: 1000px) {
+    main #server_panel #sub_panel #sub_panel_display #sub_panel_dashboard {
+        grid-template-columns: auto 180px;
+    }
+}
+
+@media (max-width: 990px) {
+    main #server_panel #server_header #server_info div .server_name {
+        font-size: 31px;
+    }
+    main #server_panel #server_header #server_info div .server_description {
+        font-size: 15px;
+    }
+    main #server_panel #server_chips {
+        gap: 0.3rem;
+    }
+}
+
+@media (max-width: 972px) {
+    main #server_panel #server_chips {
+        gap: 2px;
+        .chip {
+            padding: 0.175rem 0.55rem;
+            gap: 6px;
+        }
+    }
+}
+
+@media (max-width: 960px) {
+    main #server_panel #server_chips .chip {
+        font-size: 0.96rem;
+        padding: 0.15rem 0.5rem;
+    }
+}
+
+@media (max-width: 930px) {
+    main #server_panel #server_chips .chip {
+        font-size: 0.91rem;
+        padding: 0.125rem 0.45rem;
+    }
+}
+
+@media (max-width: 920px) {
+    .app_sidebar {
+        grid-template-columns: 273px;
+        .server_icon {
+            min-width: 49px;
+            min-height: 49px;
+            max-width: 49px;
+            max-height: 49px;
+        }
+    }
+    main.container {
+        width: calc(100vw - 273px);
+    }
+    main #server_panel #sub_panel .sub_panel_header {
+        gap: 5px;
+    }
+}
+@media (max-width: 910px) {
+    .app_sidebar {
+        grid-template-columns: 270px;
+        .server_icon {
+            min-width: 48px;
+            min-height: 48px;
+            max-width: 48px;
+            max-height: 48px;
+        }
+    }
+    main.container {
+        width: calc(100vw - 270px);
+    }
+    main #server_panel #sub_panel .sub_panel_header {
+        gap: 4px;
+    }
+}
+@media (max-width: 900px) {
+    .app_sidebar {
+        grid-template-columns: 267px;
+        .server_icon {
+            min-width: 47px;
+            min-height: 47px;
+            max-width: 47px;
+            max-height: 47px;
+        }
+    }
+    main.container {
+        width: calc(100vw - 267px);
+    }
+    main #server_panel #server_header #server_info div .server_name {
+        font-size: 28px;
+    }
+    main #server_panel #server_header #server_info div .server_description {
+        font-size: 12px;
+    }
+    main #server_panel #sub_panel .sub_panel_header {
+        gap: 3px;
+    }
+}
+@media (max-width: 890px) {
+    .app_sidebar {
+        grid-template-columns: 264px;
+        .server_icon {
+            min-width: 46px;
+            min-height: 46px;
+            max-width: 46px;
+            max-height: 46px;
+        }
+    }
+    main.container {
+        width: calc(100vw - 264px);
+    }
+    main #server_panel #sub_panel .sub_panel_header {
+        gap: 1px;
+    }
+    main #server_panel #server_chips .chip {
+        font-size: 0.88rem;
+        padding: 0.1rem 0.4rem;
+        gap: 5px;
+    }
+}
+@media (max-width: 880px) {
+    .app_sidebar {
+        grid-template-columns: 261px;
+        .server_icon {
+            min-width: 45px;
+            min-height: 45px;
+            max-width: 45px;
+            max-height: 45px;
+        }
+    }
+    main.container {
+        width: calc(100vw - 261px);
+    }
+    main #server_panel #sub_panel .sub_panel_header {
+        gap: 0;
+    }
+}
+@media (max-width: 870px) {
+    .app_sidebar {
+        grid-template-columns: 258px;
+        .server_icon {
+            min-width: 44px;
+            min-height: 44px;
+            max-width: 44px;
+            max-height: 44px;
+        }
+    }
+    main.container {
+        width: calc(100vw - 258px);
+    }
+}
+@media (max-width: 860px) {
+    .app_sidebar {
+        grid-template-columns: 255px;
+        .server_icon {
+            min-width: 43px;
+            min-height: 43px;
+            max-width: 43px;
+            max-height: 43px;
+        }
+    }
+    main.container {
+        width: calc(100vw - 255px);
+    }
+    main #server_panel #sub_panel .sub_panel_header {
+        font-size: 0.975rem;
+    }
+    main #server_panel #server_chips .chip {
+        font-size: 0.82rem;
+        padding: 0.075rem 0.35rem;
+        gap: 4px;
+    }
+}
+@media (max-width: 850px) {
+    .app_sidebar {
+        grid-template-columns: 252px;
+        .server_icon {
+            min-width: 42px;
+            min-height: 42px;
+            max-width: 42px;
+            max-height: 42px;
+        }
+    }
+    main.container {
+        width: calc(100vw - 252px);
+    }
+}
+@media (max-width: 840px) {
+    .app_sidebar {
+        grid-template-columns: 249px;
+        .server_icon {
+            min-width: 41px;
+            min-height: 41px;
+            max-width: 41px;
+            max-height: 41px;
+        }
+    }
+    main.container {
+        width: calc(100vw - 249px);
+    }
+}
+@media (max-width: 832px) {
+    .app_sidebar {
+        grid-template-columns: 246px;
+        .server_icon {
+            min-width: 40px;
+            min-height: 40px;
+            max-width: 40px;
+            max-height: 40px;
+        }
+    }
+    main.container {
+        width: calc(100vw - 246px);
+    }
+    main #server_panel #sub_panel .sub_panel_header {
+        font-size: 0.95rem;
+    }
+}
+@media (max-width: 810px) {
+    main #server_panel #sub_panel .sub_panel_header {
+        font-size: 0.9rem;
+    }
+    main #server_panel #server_chips .chip {
+        font-size: 0.8rem;
+        padding: 0.075rem 0.35rem;
+    }
+    main #server_panel #sub_panel #sub_panel_display #sub_panel_dashboard {
+        grid-template-columns: auto 160px;
+    }
+}

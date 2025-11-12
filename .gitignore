@@ -1,0 +1,8 @@
+/dist/
+/target/
+/Cargo.lock
+
+.zed/
+.vscode/
+old/
+.default-tauri-app

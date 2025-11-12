@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Gaia Manager",
+  "version": "0.1.0",
+  "identifier": "com.dip-land.gaia-manager",
+
+  "build": {
+    "beforeDevCommand": "dx serve --port 1420 --platform web",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "dx bundle --release --platform web",
+    "frontendDist": "../dist/public"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "Gaia Manager",
+        "minWidth": 820,
+        "minHeight": 630,
+        "center": true,
+        "decorations": false
+      }
+    ],
+    "security": {
+      "csp": null,
+      "assetProtocol": {
+        "enable": true,
+        "scope": {
+          "requireLiteralLeadingDot": false,
+          "allow": ["**/*"]
+        }
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": ["icons/icon.ico"]
+  }
+}

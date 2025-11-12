@@ -1,0 +1,13 @@
+use dioxus::prelude::*;
+
+pub fn svg() -> Element {
+    rsx! {
+        svg {
+            view_box: "0 0 16 16",
+            fill: "currentColor",
+            path {
+                d: "M3 3v10h10V3H3zm9 9H4V4h8v8z"
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+Started Project 10/7/2025
+
+[Started 10/07/25][Completed 10/17/25] Functioning base UI
+[Started 10/09/25][Completed 10/17/25] Switch from Tauri+JS Vanilla to Tauri+Dioxus
+[Started 10/15/25][Completed 10/23/25] Figure out dumbass images and asset security (fuck you Tauri)
+[Started 10/25/25] Add server UI
+[Started 10/29/25][Completed 11/01/25] Rewrite UI to have custom titlebar
+[Started 11/01/25] Add app settings UI and create server UI
+[ ] Get app settings UI functioning
+[Started 11/01/25] Get server creation to work
+[ ] Get starting and stopping servers working
+[ ] Have a dev mode toggle in settings that shoes debug info and window
+[ ] Make it to where you can re-order your quick list and hide servers on that list
+[ ] Functioning console
+[ ] Functioning playerlist
+[ ] Functioning scheduler
+[ ] 1.0.0 release (Target December)
+
+v2 (Target later half of Q1'26 / early Q2'26)
+[ ] Web Panel and Web API
+[ ] Functioning file explorer
+[ ] Functioning mod/plugin explorer with a config editor
+[ ] Functioning map tools (may take the longest to implement)
+[ ] Discord integration via webhooks or bot to log player joins, leaves, advancements, etc.. (Make it to where user can supply either a bot token or a webhook url)
