@@ -10,7 +10,7 @@ extern "C" {
 }
 
 use crate::{
-    app::{APP_STATE, change_selected_sub_panel},
+    app::{APP_STATE, set_selected_sub_panel},
     components::svgs::{caret_down, play, rotate, skull, stop},
 };
 
@@ -205,49 +205,49 @@ fn sub_panel() -> Element {
                 class: if selected == "dashboard".to_string() {
                      "selected"
                 },
-                onclick: move |_| change_selected_sub_panel("dashboard"),
+                onclick: move |_| set_selected_sub_panel("dashboard"),
                 "Dashboard"
             }
             div {
                 class: if selected == "players".to_string() {
                      "selected"
                 },
-                onclick: move |_| change_selected_sub_panel("players"),
+                onclick: move |_| set_selected_sub_panel("players"),
                 "Players"
             }
             div {
                 class: if selected == "backups".to_string() {
                      "selected"
                 },
-                onclick: move |_| change_selected_sub_panel("backups"),
+                onclick: move |_| set_selected_sub_panel("backups"),
                 "Backups"
             }
             div {
                 class: if selected == "scheduler".to_string() {
                      "selected"
                 },
-                onclick: move |_| change_selected_sub_panel("scheduler"),
+                onclick: move |_| set_selected_sub_panel("scheduler"),
                 "Scheduler"
             }
             // div {
             //     class: if selected == "maps".to_string() {
             //          "selected"
             //     },
-            //     onclick: move |_| change_selected_sub_panel("maps"),
+            //     onclick: move |_| set_selected_sub_panel("maps"),
             //     "Maps"
             // }
             div {
                 class: if selected == "config_editor".to_string() {
                      "selected"
                 },
-                onclick: move |_| change_selected_sub_panel("config_editor"),
+                onclick: move |_| set_selected_sub_panel("config_editor"),
                 "Config Editor"
             }
             div {
                 class: if selected == "settings".to_string() {
                      "selected"
                 },
-                onclick: move |_| change_selected_sub_panel("settings"),
+                onclick: move |_| set_selected_sub_panel("settings"),
                 "Settings"
             }
         }

@@ -1,7 +1,4 @@
 use dioxus::prelude::*;
-use rand::prelude::*;
-use serde::{Deserialize, Serialize};
-use uuid::Uuid;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -10,7 +7,9 @@ extern "C" {
     async fn invoke(cmd: &str, args: JsValue) -> JsValue;
 }
 
-use crate::app::{APP_STATE, change_selected_sub_panel};
+use crate::app::{
+    APP_STATE, ServerCreationStruct, set_selected_sub_panel, set_server_creation_options,
+};
 
 #[component]
 pub fn main_panel() -> Element {
@@ -45,7 +44,8 @@ pub fn main_panel() -> Element {
                         description: "Basic vanilla, no plugins or mods".to_string(),
                         asset: asset!("/assets/images/Grass_Block_JE7_BE6.png"),
                         onclick: move |_| {
-                            change_selected_sub_panel("configure_new_server");
+                            set_selected_sub_panel("configure_new_server");
+                            set_server_creation_options(Some(ServerCreationStruct { server_type: "vanilla".to_string() ,..Default::default() }));
                         }
                     }
                     server_type {
@@ -53,7 +53,8 @@ pub fn main_panel() -> Element {
                         description: "Based on Spigot, designed to greatly improve performance".to_string(),
                         asset: asset!("/assets/images/papermc_logo.256.webp"),
                         onclick: move |_| {
-                            change_selected_sub_panel("configure_new_server");
+                            set_selected_sub_panel("configure_new_server");
+                            set_server_creation_options(Some(ServerCreationStruct { server_type: "paper".to_string() ,..Default::default() }));
                         }
                     }
                     server_type {
@@ -61,7 +62,8 @@ pub fn main_panel() -> Element {
                         description: "Fork of Forge without the controversies, NeoForge does not work with most Forge mods".to_string(),
                         asset: asset!("/assets/images/neoforge.png"),
                         onclick: move |_| {
-                            change_selected_sub_panel("configure_new_server");
+                            set_selected_sub_panel("configure_new_server");
+                            set_server_creation_options(Some(ServerCreationStruct { server_type: "neoforge".to_string() ,..Default::default() }));
                         }
                     }
                     server_type {
@@ -69,7 +71,8 @@ pub fn main_panel() -> Element {
                         description: "One of the oldest Minecraft Modloaders, Forge does not work with most NeoForge mods".to_string(),
                         asset: asset!("/assets/images/forge.jpg"),
                         onclick: move |_| {
-                            change_selected_sub_panel("configure_new_server");
+                            set_selected_sub_panel("configure_new_server");
+                            set_server_creation_options(Some(ServerCreationStruct { server_type: "forge".to_string() ,..Default::default() }));
                         }
                     }
                     server_type {
@@ -77,84 +80,85 @@ pub fn main_panel() -> Element {
                         description: "Modular, lightweight mod loader, does not support any forge mods".to_string(),
                         asset: asset!("/assets/images/fabric.png"),
                         onclick: move |_| {
-                            change_selected_sub_panel("configure_new_server");
+                            set_selected_sub_panel("configure_new_server");
+                            set_server_creation_options(Some(ServerCreationStruct { server_type: "fabric".to_string() ,..Default::default() }));
                         }
                     }
                 }
-                div {
-                    class: "panel_header",
-                    div {
-                        h3 {
-                            style: "margin-bottom: 0.2rem; margin-left: -1rem;",
-                            "Proxies"
-                        }
-                    }
-                }
-                div {
-                    class: "sub_section",
-                    server_type {
-                        name: "BungeeCord".to_string(),
-                        description: "".to_string(),
-                        asset: asset!("/assets/images/pack.webp"),
-                        onclick: move |_| {
-                            change_selected_sub_panel("configure_new_server");
-                        }
-                    }
-                    server_type {
-                        name: "Velocity".to_string(),
-                        description: "Modern, high-performance proxy".to_string(),
-                        asset: asset!("/assets/images/velocity_logo_white.webp"),
-                        onclick: move |_| {
-                            change_selected_sub_panel("configure_new_server");
-                        }
-                    }
-                }
-                div {
-                    class: "panel_header",
-                    div {
-                        h3 {
-                            style: "margin-bottom: 0.2rem; margin-left: -1rem;",
-                            "Experimental"
-                        }
-                    }
-                }
-                div {
-                    class: "sub_section",
-                    server_type {
-                        name: "Bedrock Edition".to_string(),
-                        description: "Cross-platform version of Minecraft".to_string(),
-                        asset: asset!("/assets/images/Bedrock_JE2_BE2.png"),
-                        onclick: move |_| {}
-                    }
-                }
-                div {
-                    class: "panel_header",
-                    div {
-                        h3 {
-                            style: "margin-bottom: 0.2rem; margin-left: -1rem;",
-                            "Legacy"
-                        }
-                    }
-                }
-                div {
-                    class: "sub_section",
-                    server_type {
-                        name: "CraftBukkit".to_string(),
-                        description: "".to_string(),
-                        asset: asset!("/assets/images/craftbukkit.png"),
-                        onclick: move |_| {
-                            change_selected_sub_panel("configure_new_server");
-                        }
-                    }
-                    server_type {
-                        name: "Waterfall".to_string(),
-                        description: "".to_string(),
-                        asset: asset!("/assets/images/velocity_logo_white.webp"),
-                        onclick: move |_| {
-                            change_selected_sub_panel("configure_new_server");
-                        }
-                    }
-                }
+                // div {
+                //     class: "panel_header",
+                //     div {
+                //         h3 {
+                //             style: "margin-bottom: 0.2rem; margin-left: -1rem;",
+                //             "Proxies"
+                //         }
+                //     }
+                // }
+                // div {
+                //     class: "sub_section",
+                //     server_type {
+                //         name: "BungeeCord".to_string(),
+                //         description: "".to_string(),
+                //         asset: asset!("/assets/images/pack.webp"),
+                //         onclick: move |_| {
+                //             set_selected_sub_panel("configure_new_server");
+                //         }
+                //     }
+                //     server_type {
+                //         name: "Velocity".to_string(),
+                //         description: "Modern, high-performance proxy".to_string(),
+                //         asset: asset!("/assets/images/velocity_logo_white.webp"),
+                //         onclick: move |_| {
+                //             set_selected_sub_panel("configure_new_server");
+                //         }
+                //     }
+                // }
+                // div {
+                //     class: "panel_header",
+                //     div {
+                //         h3 {
+                //             style: "margin-bottom: 0.2rem; margin-left: -1rem;",
+                //             "Experimental"
+                //         }
+                //     }
+                // }
+                // div {
+                //     class: "sub_section",
+                //     server_type {
+                //         name: "Bedrock Edition".to_string(),
+                //         description: "Cross-platform version of Minecraft".to_string(),
+                //         asset: asset!("/assets/images/Bedrock_JE2_BE2.png"),
+                //         onclick: move |_| {}
+                //     }
+                // }
+                // div {
+                //     class: "panel_header",
+                //     div {
+                //         h3 {
+                //             style: "margin-bottom: 0.2rem; margin-left: -1rem;",
+                //             "Legacy"
+                //         }
+                //     }
+                // }
+                // div {
+                //     class: "sub_section",
+                //     server_type {
+                //         name: "CraftBukkit".to_string(),
+                //         description: "".to_string(),
+                //         asset: asset!("/assets/images/craftbukkit.png"),
+                //         onclick: move |_| {
+                //             set_selected_sub_panel("configure_new_server");
+                //         }
+                //     }
+                //     server_type {
+                //         name: "Waterfall".to_string(),
+                //         description: "".to_string(),
+                //         asset: asset!("/assets/images/velocity_logo_white.webp"),
+                //         onclick: move |_| {
+                //             set_selected_sub_panel("configure_new_server");
+                //         }
+                //     }
+                // }
             }
         }
     } else if selected_sub_panel == "configure_new_server".to_string() {
@@ -173,7 +177,8 @@ pub fn main_panel() -> Element {
                     }
                     button {
                         onclick: move |_| {
-                            change_selected_sub_panel("select_server_type");
+                            set_selected_sub_panel("select_server_type");
+                            set_server_creation_options(None);
                         },
                         "Back"
                     }
