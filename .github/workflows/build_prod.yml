@@ -1,9 +1,9 @@
-name: 'build-dev'
+name: "build-prod"
 
 on:
   push:
     branches:
-      - dev
+      - main
 env:
   CARGO_TERM_COLOR: always
 
@@ -15,10 +15,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - platform: 'ubuntu-22.04' # for Tauri v1 you could replace this with ubuntu-20.04.
-            args: ''
-          - platform: 'windows-latest'
-            args: ''
+          - platform: "ubuntu-22.04" # for Tauri v1 you could replace this with ubuntu-20.04.
+            args: ""
+          - platform: "windows-latest"
+            args: ""
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v4
@@ -46,15 +46,14 @@ jobs:
         run: yarn install # change this to npm, pnpm or bun depending on which one you use.
 
       - run: cargo install cargo-binstall
-      - run: cargo binstall dioxus-cli@0.6.3 --force
-      
+      - run: cargo binstall dioxus-cli --force
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
-          releaseName: 'App v__VERSION__'
-          releaseBody: 'See the assets to download this version and install.'
+          tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version.
+          releaseName: "v__VERSION__"
+          releaseBody: "See the assets to download this version and install."
           releaseDraft: true
           prerelease: false
           args: ${{ matrix.args }}
