@@ -13,8 +13,8 @@ extern "C" {
 
 use crate::{
     app::{
-        APP_STATE, ServerStruct, change_selected_panel, change_selected_server,
-        change_selected_sub_panel, load_servers,
+        APP_STATE, ServerStruct, load_servers, set_selected_panel, set_selected_server,
+        set_selected_sub_panel,
     },
     components::svgs::{folder, gear, plus},
 };
@@ -31,8 +31,8 @@ pub fn side_bar() -> Element {
                     class: "extras",
                     div {
                         onclick: move |_| {
-                            change_selected_panel("create_server");
-                            change_selected_sub_panel("select_server_type");
+                            set_selected_panel("create_server");
+                            set_selected_sub_panel("select_server_type");
                         },
                         class: "server_icon",
                         plus::svg {}
@@ -87,6 +87,8 @@ pub fn server_list() -> Element {
                 br {}
                 {format!("Selected Server: {:?}", APP_STATE.read().selected_server)}
                 br {}
+                {format!("Server Creation Options: {:?}", APP_STATE.read().server_creation_options)}
+                br {}
                 button {
                     onclick: move |_| load_servers(),
                     "Add placeholder server"
@@ -133,10 +135,11 @@ pub fn server_list_item(props: ServerStruct) -> Element {
     rsx! {
         div {
             onclick: move |_| {
-                change_selected_server(id);
-                change_selected_panel(format!("SERVER:{}", id).as_str());
+                set_selected_panel(format!("SERVER:{}", id).as_str());
                 // this will eventually be a changeable user setting
-                change_selected_sub_panel("dashboard");
+                set_selected_sub_panel("dashboard");
+                // server needs to be set last to prevent overrides
+                set_selected_server(id);
             },
             id: format!("view_server_{}", props.id),
             class: if selected_panel.starts_with("SERVER:") && Uuid::parse_str(selected_panel.replace("SERVER:", "").as_str()).unwrap() == id {

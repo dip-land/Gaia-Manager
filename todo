@@ -17,6 +17,8 @@ Started Project 10/7/2025
 [ ] 1.0.0 release (Target December)
 
 v2 (Target later half of Q1'26 / early Q2'26)
+[ ] Full Linux Support
+[ ] Proxy & Networked Server Support
 [ ] Web Panel and Web API
 [ ] Functioning file explorer
 [ ] Functioning mod/plugin explorer with a config editor

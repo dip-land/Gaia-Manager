@@ -20,7 +20,7 @@ pub fn title_bar() -> Element {
             class: "app_titlebar",
             div {
                 class: "drag_region",
-                data: "data-tauri-drag-region"
+                "data-tauri-drag-region": ""
             }
             div {
                 class: "content",

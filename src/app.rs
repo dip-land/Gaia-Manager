@@ -46,6 +46,7 @@ pub struct AppStateStruct {
     pub selected_sub_panel: String,
     pub selected_server: Option<ServerStruct>,
     pub servers: Vec<ServerStruct>,
+    pub server_creation_options: Option<ServerCreationStruct>,
 }
 
 impl Default for AppStateStruct {
@@ -55,6 +56,42 @@ impl Default for AppStateStruct {
             selected_sub_panel: "".to_string(),
             selected_server: None,
             servers: Vec::new(),
+            server_creation_options: None,
+        }
+    }
+}
+
+#[allow(dead_code)]
+#[derive(Clone, Debug)]
+pub struct ServerCreationStruct {
+    // Values will be "new", "import" or "clone"
+    pub creation_type: String,
+    pub original_path: Option<String>,
+    pub destination_path: Option<String>,
+    pub icon_path: Option<String>,
+    pub name: String,
+    pub description: String,
+    pub server_type: String,
+    pub port: u16,
+    pub java_allocated_memory: i64,
+    pub max_players: i32,
+    pub auto_accept_eula: bool,
+}
+
+impl Default for ServerCreationStruct {
+    fn default() -> Self {
+        ServerCreationStruct {
+            creation_type: "new".to_string(),
+            original_path: None,
+            destination_path: None,
+            icon_path: None,
+            name: "server name".to_string(),
+            description: "".to_string(),
+            server_type: "vanilla".to_string(),
+            port: 25565,
+            java_allocated_memory: 1024,
+            max_players: 20,
+            auto_accept_eula: false,
         }
     }
 }
@@ -113,6 +150,8 @@ impl Default for ServerStruct {
     }
 }
 
+pub fn create_server_from_creation_struct(creation_struct: ServerCreationStruct) {}
+
 pub fn generate_random_server() -> ServerStruct {
     let mut rng = rand::rng();
     let status: Vec<i8> = (0..2).collect();
@@ -162,23 +201,35 @@ pub fn load_servers() {
     APP_STATE.write().servers.push(generate_random_server());
 }
 
-pub fn change_selected_server(value: Uuid) {
+pub fn set_selected_server(value: Uuid) {
     let value = APP_STATE
         .read()
         .servers
         .clone()
         .into_iter()
         .find(|server| server.id == value);
-    let selected_server: &mut Option<ServerStruct> = &mut APP_STATE.write().selected_server;
-    *selected_server = Some(value.unwrap());
+    let app_state = &mut APP_STATE.write();
+    app_state.selected_server = Some(value.unwrap());
 }
 
-pub fn change_selected_panel(value: &str) {
+pub fn set_selected_panel(value: &str) {
+    reset_option_states();
     let selected_panel: &mut String = &mut APP_STATE.write().selected_panel;
     *selected_panel = value.to_string();
 }
 
-pub fn change_selected_sub_panel(value: &str) {
+pub fn set_selected_sub_panel(value: &str) {
     let selected_sub_panel: &mut String = &mut APP_STATE.write().selected_sub_panel;
     *selected_sub_panel = value.to_string();
+}
+
+pub fn set_server_creation_options(value: Option<ServerCreationStruct>) {
+    let app_state = &mut APP_STATE.write();
+    app_state.server_creation_options = value;
+}
+
+pub fn reset_option_states() {
+    let app_state = &mut APP_STATE.write();
+    app_state.selected_server = None;
+    app_state.server_creation_options = None;
 }
